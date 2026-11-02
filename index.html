@@ -619,7 +619,7 @@ function canEditUnit(u){ const a=allowedUnit(); return !a || a==='ALL' || a.toUp
 /* Central script URL (v4): embedded in the file so nobody has to paste it.
    Effective URL = owner's manual override (only when a central update failed)
    > central URL from getConfig > saved URL > embedded URL. */
-const EMBEDDED_SCRIPT_URL='https://script.google.com/macros/s/AKfycbxCmW5I92PX6VNGPQ32e0brcLnl8gI0HLRdpE09Uw5qq8DiUcNctqA3MepJE8IImoR7/exec';
+const EMBEDDED_SCRIPT_URL=https://script.google.com/macros/s/AKfycbyx84kG74nJdp99VmNBXl3el9KnCAOX9AqexEray-ncOtHNDDoJTiF7wpBJCiozzEs/exec;
 function scriptUrl(){ if(fsGet('dev-entry-url-manual')) return fsGet('dev-entry-url'); return window.__cfgUrl || fsGet('dev-entry-url') || EMBEDDED_SCRIPT_URL; }
 function fetchScriptConfig(){
   const base=scriptUrl();
