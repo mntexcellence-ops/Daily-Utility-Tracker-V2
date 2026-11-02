@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Development, Compliance Works and Tentative Budget — DEKKO ISHO Group</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#E9EEF4;--card:#FFFFFF;--border:#DCE4EE;--text:#16324F;--body:#33475C;--muted:#64748B;--faint:#94A3B8;--soft:#F7FAFC;--soft2:#EDF2F7;--shadow:#16324f0d;--brand:#006666;--brand-b:#0E8A8A;--pink:#EC268F}
+[data-theme="dark"]{--bg:#0A1120;--card:#131E33;--border:#24365A;--text:#E8EEF9;--body:#C4D2E8;--muted:#93A5C4;--faint:#7186A8;--soft:#182740;--soft2:#1B2C4D;--shadow:#00000045;--brand:#0E8A8A;--brand-b:#14A3A3}
+[data-theme="dark"] input{color-scheme:dark}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);padding:14px;transition:background .25s,color .25s}
+.app{max-width:1460px;margin:0 auto}
+.topbar{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px var(--shadow);margin-bottom:14px}
+.brand{display:flex;align-items:center;gap:12px}
+.logoimg{height:52px;width:auto;display:block}
+.brand h1{font-size:19px;font-weight:800;letter-spacing:.4px}
+.brand h1 span{color:var(--brand-b)}
+.brand p{font-size:11.5px;color:var(--muted)}
+.live{font-size:11px;color:var(--muted);text-align:right}
+.layout{display:grid;grid-template-columns:222px 1fr;gap:14px}
+.side{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 2px 10px var(--shadow);height:fit-content;position:sticky;top:14px}
+.side h3{font-size:12px;letter-spacing:1.1px;text-transform:uppercase;color:var(--text);border-bottom:2px solid var(--brand-b);padding-bottom:8px;margin-bottom:12px}
+.fsec{margin-bottom:16px}
+.fsec h4{font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:var(--faint);margin-bottom:7px}
+.fitem{display:flex;align-items:center;gap:8px;font-size:12.5px;padding:4px 2px;cursor:pointer;color:var(--body)}
+.fitem input{accent-color:var(--brand-b);width:14px;height:14px}
+.reset{font-size:11.5px;color:#118DFF;cursor:pointer;text-decoration:underline}
+.dd{position:relative}
+.ddbtn{width:100%;text-align:left;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--soft);color:var(--text);font-size:12.5px;font-weight:600;cursor:pointer}
+.ddpanel{margin-top:6px;border:1px solid var(--border);border-radius:8px;padding:8px;background:var(--card);box-shadow:0 4px 14px var(--shadow)}
+.ddtools{display:flex;gap:12px;border-bottom:1px solid var(--border);padding-bottom:6px;margin-bottom:6px}
+.ddtools span{font-size:11.5px;color:#118DFF;cursor:pointer;font-weight:600}
+.dlabel{display:block;font-size:11px;color:var(--muted);margin:7px 0 3px}
+.dinput{width:100%;padding:7px 9px;border:1px solid var(--border);border-radius:8px;font-size:12.5px;color:var(--text);background:var(--soft);font-family:inherit}
+.toolbtn{width:100%;text-align:left;padding:9px 12px;border:1px solid var(--border);border-radius:8px;background:var(--soft);color:var(--text);font-size:12.5px;font-weight:700;cursor:pointer;margin-bottom:8px}
+.toolbtn:hover{border-color:var(--brand-b)}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:14px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px 8px;box-shadow:0 2px 10px var(--shadow);position:relative;min-width:0}
+.kpi .ic{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px}
+.kpi .l{font-size:10.5px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);font-weight:600}
+.kpi .v{font-size:clamp(14px,1.3vw,20px);font-weight:800;margin:5px 0 5px;color:var(--text);font-variant-numeric:tabular-nums;overflow-wrap:anywhere;line-height:1.2}
+.chip{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:20px;white-space:nowrap}
+.chip.g{background:#DCF5E5;color:#15803D}.chip.r{background:#FDE3E3;color:#DC2626}.chip.n{background:var(--soft2);color:var(--muted)}
+.chip.b{background:#DBEAFE;color:#1D4ED8}.chip.y{background:#FEF3C7;color:#B45309}
+[data-theme="dark"] .chip.g{background:#123B25;color:#4ADE80}
+[data-theme="dark"] .chip.r{background:#3D1A1A;color:#F87171}
+[data-theme="dark"] .chip.b{background:#16294D;color:#7FB0FF}
+[data-theme="dark"] .chip.y{background:#3A2E12;color:#FCD34D}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.badge.od{background:#FDE3E3;color:#DC2626;border:1px solid #FECACA}
+.badge.soon{background:#FEF3C7;color:#B45309;border:1px solid #FDE68A}
+[data-theme="dark"] .badge.od{background:#3D1A1A;color:#F87171;border-color:#5B2323}
+[data-theme="dark"] .badge.soon{background:#3A2E12;color:#FCD34D;border-color:#54431A}
+tr.odrow td{background:#FEF2F2}
+[data-theme="dark"] tr.odrow td{background:#2B1A1A}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.grid>*{min-width:0}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;box-shadow:0 2px 10px var(--shadow);min-width:0;overflow-x:auto}
+.card h3{font-size:13.5px;font-weight:700}
+.card h3 i{font-style:normal;color:var(--brand-b);margin-right:6px}
+.card .s{font-size:11px;color:var(--faint);margin:2px 0 10px}
+.s3{grid-column:span 3}.s4{grid-column:span 4}.s6{grid-column:span 6}.s12{grid-column:span 12}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{text-align:left;color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;padding:7px 8px;border-bottom:2px solid var(--border);background:var(--soft);position:sticky;top:0}
+td{padding:7.5px 8px;border-bottom:1px solid var(--border);color:var(--body)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.tot td{font-weight:800;color:var(--text);background:#EFFAF3;border-top:2px solid var(--brand-b)}
+[data-theme="dark"] tr.tot td{background:#0E2A26}
+.tblscroll{max-height:560px;overflow:auto}
+.leg{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:9px}
+.leg div{font-size:11px;color:var(--muted);display:flex;gap:5px;align-items:center}
+.leg i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.nav{position:fixed;right:0;top:0;bottom:0;width:44px;display:flex;flex-direction:column;gap:10px;padding:16px 0;margin:0;z-index:50}
+.nav div{background:var(--card);border:1px solid var(--border);border-radius:12px;text-align:center;padding:18px 0;font-size:12px;font-weight:800;letter-spacing:1px;color:var(--text);box-shadow:0 2px 10px var(--shadow);writing-mode:vertical-rl;transform:rotate(180deg)}
+.nav div span{color:var(--brand-b);display:block;margin:0 0 2px 0}
+.nav div.act{background:linear-gradient(135deg,#006666,#0E8A8A);color:#fff;border-color:#006666}
+.nav div.act span{color:#fff}
+.foot{text-align:center;color:var(--faint);font-size:11px;margin-top:14px}
+.view{display:none}
+.view.on{display:block}
+.nav div{cursor:pointer;user-select:none}
+.nav div:hover{border-color:var(--brand-b)}
+.insight{display:flex;gap:12px;padding:13px 14px;border:1px solid var(--border);border-radius:12px;background:var(--soft);margin-bottom:10px}
+.insight .ii{font-size:20px;line-height:1.2}
+.insight h4{font-size:13px;margin-bottom:2px;color:var(--text)}
+.insight p{font-size:12px;color:var(--muted);line-height:1.5}
+.insight b{color:var(--text)}
+.pbar{display:inline-block;width:90px;height:9px;background:var(--soft2);border-radius:5px;vertical-align:middle;overflow:hidden}
+.pbar i{display:block;height:9px;background:var(--brand-b);border-radius:5px}
+@media(max-width:1100px){.layout{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(3,1fr)}.s3,.s4,.s6,.s12{grid-column:span 12}}
+@media(min-width:681px){main{padding-right:58px}}
+@media(max-width:680px){body{padding:8px}.kpis{grid-template-columns:repeat(2,1fr);gap:9px}.nav{position:static;width:auto;height:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:0;margin-top:14px}.nav div{writing-mode:horizontal-tb;transform:none;padding:11px 3px}.nav div span{display:inline;margin-right:7px}.topbar{flex-wrap:wrap;gap:10px;padding:12px 14px}.brand h1{font-size:16px}.logoimg{height:42px}.side{position:static}.card{padding:13px 12px}.kpi{padding:11px 12px 6px}}
+@media(max-width:380px){.kpi .v{font-size:13px}.nav div{font-size:10.5px;padding:11px 3px}}
+.kpi{cursor:pointer}
+.kpi:hover{border-color:var(--brand-b)}
+.fsmodal{position:fixed;inset:0;background:#00000066;z-index:100;display:flex;align-items:flex-start;justify-content:center;padding:24px 12px;overflow:auto}
+.fsbox{background:var(--card);border:1px solid var(--border);border-radius:14px;width:100%;max-width:1180px;box-shadow:0 8px 30px #00000033;overflow:hidden}
+@media(max-width:680px){.fsmodal{padding:12px 8px}}
+.fshead{background:var(--card);border-bottom:1px solid var(--border);padding:12px 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.fshead h2{font-size:16px}
+.fshead .tot{font-size:12.5px;color:var(--muted)}
+.fsbody{flex:1;overflow:auto;padding:14px 18px}
+.fsbtn{background:var(--soft);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:12.5px;font-weight:700;cursor:pointer}
+.fsbtn.pri{background:var(--brand);color:#fff;border:0}
+.fsbtn:disabled{opacity:.55;cursor:wait}
+.efinput{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text);background:var(--soft);font-family:inherit}
+.efgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.efgrid label{font-size:11px;color:var(--muted);display:block;margin-bottom:3px}
+.efseg{display:flex;background:var(--soft2);border-radius:9px;padding:3px}
+.efseg button{flex:1;border:0;background:transparent;padding:8px 2px;font-size:12.5px;font-weight:700;color:var(--muted);border-radius:7px;cursor:pointer}
+.efseg button.on{background:var(--brand);color:#fff}
+.entrybtn{background:var(--brand);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-size:12.5px;font-weight:700;cursor:pointer}
+.entrybtn:disabled{opacity:.55;cursor:wait}
+.entrybtn.off{background:var(--soft);color:var(--text);border:1px solid var(--border)}
+.xbtn{background:var(--soft);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer}
+@media(max-width:680px){.efgrid{grid-template-columns:repeat(2,1fr)}}
+.fsmsg{font-size:12.5px;min-height:18px;padding:6px 18px;background:var(--card)}
+.fsmsg.ok{color:#15803D}.fsmsg.err{color:#DC2626}
+/* ── ClickUp-style single-project detail modal + subtasks ── */
+.dtmodal{position:fixed;inset:0;background:#00000066;z-index:200;display:flex;align-items:flex-start;justify-content:center;padding:28px 12px;overflow:auto}
+.dtcard{background:var(--card);border:1px solid var(--border);border-radius:14px;width:100%;max-width:720px;box-shadow:0 8px 30px #00000033;overflow:hidden}
+.dthead{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.dthead h2{font-size:16px;line-height:1.3;flex:1;min-width:220px}
+.dtsec{padding:12px 18px;border-bottom:1px solid var(--border)}
+.dtsec h4{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.dtgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;font-size:13px}
+.dtgrid b{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.5px;display:block}
+.subrow{display:flex;gap:8px;align-items:center;padding:7px 8px;border:1px solid var(--border);border-radius:8px;margin-bottom:6px;background:var(--soft)}
+.subrow.done .subname{text-decoration:line-through;color:var(--muted)}
+.subname{flex:1;font-size:13px}
+.subdue{font-size:11.5px;color:var(--muted);white-space:nowrap}
+.subx{border:0;background:transparent;cursor:pointer;font-size:14px;color:var(--muted)}
+.lastsub{font-size:11.5px;color:var(--brand);font-weight:600}
+.rowclick{cursor:pointer}
+.rowclick:hover td{background:var(--soft)}
+@media(max-width:680px){.dtgrid{grid-template-columns:1fr}.dtmodal{padding:12px 8px}}
+</style></head><body>
+<div class="app">
+  <div class="topbar">
+    <div class="brand"><img class="logoimg" src="data:image/png;base64,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" alt="Dekko Isho Group">
+      <div><h1>DEVELOPMENT &amp; COMPLIANCE <span>WORKS</span></h1><p>Dekkoisho Group · Tentative Budget &amp; Project Progress — All Units</p></div>
+    </div>
+    <div class="live">
+    <div style="display:flex;gap:8px;justify-content:flex-end;align-items:center">
+    <button id="btnRefresh" onclick="refreshLive(true)" style="background:var(--brand);color:#fff;border:0;border-radius:8px;padding:8px 18px;font-size:12.5px;font-weight:700;cursor:pointer">⟳ Refresh Data</button>
+    </div>
+    <div id="liveStatus" style="margin-top:5px;font-size:11px"></div></div>
+  </div>
+  <div class="layout">
+    <aside class="side">
+      <h3>⚙ Filters</h3>
+      <div class="fsec"><h4>Unit</h4>
+        <div class="dd"><button type="button" class="ddbtn" id="ddUnitBtn" onclick="toggleDD('Unit',event)">All units ▾</button>
+          <div class="ddpanel" id="ddUnitPanel" style="display:none">
+            <div class="ddtools"><span onclick="pickAll('U',true)">Select all</span><span onclick="pickAll('U',false)">Clear</span></div>
+            <div id="fUnits"></div>
+          </div></div>
+      </div>
+      <div class="fsec"><h4>Project Status</h4>
+        <div class="dd"><button type="button" class="ddbtn" id="ddStatusBtn" onclick="toggleDD('Status',event)">All statuses ▾</button>
+          <div class="ddpanel" id="ddStatusPanel" style="display:none">
+            <div class="ddtools"><span onclick="pickAll('S',true)">Select all</span><span onclick="pickAll('S',false)">Clear</span></div>
+            <div id="fStatus"></div>
+          </div></div>
+      </div>
+      <div class="fsec"><h4>Progress</h4>
+        <select id="fProg" class="dinput" onchange="setProg(this.value)">
+          <option value="all">All progress</option>
+          <option value="100">100% only</option>
+          <option value="lt100">Below 100%</option>
+        </select>
+      </div>
+      <div class="fsec"><h4>⚠ Overdue</h4>
+        <label style="font-size:12.5px;color:var(--body)"><input type="checkbox" id="fOverdue" onchange="setOverdue(this.checked)"> Overdue only</label>
+      </div>
+      <div class="fsec"><h4>Search Project</h4>
+        <input type="text" id="qSearch" class="dinput" placeholder="Type project name…" oninput="render()">
+      </div>
+      <span class="reset" onclick="resetAll()">Reset all filters</span>
+      <div class="fsec" style="margin-top:16px"><h4>Tools</h4>
+        <button class="toolbtn" onclick="openAddProject()">➕ Add New Project</button>
+        <button id="btnMode" class="toolbtn" onclick="toggleMode()">🌙 Dark</button>
+      </div>
+    </aside>
+    <main>
+      <div id="view-ov" class="view on">
+      <section class="kpis" id="kpis"></section>
+      <section class="grid">
+        <div class="card s6"><h3><i>▬</i>Tentative Budget by Unit</h3><div class="s">Ranked — total budget per unit in the selected filters</div><div id="chBarUnit"></div></div>
+        <div class="card s3"><h3><i>◔</i>Budget by Status</h3><div class="s">Share of total budget</div><div id="chDonutStatus"></div></div>
+        <div class="card s3"><h3><i>◔</i>Projects by Status</h3><div class="s">Share of project count</div><div id="chDonutCount"></div></div>
+        <div class="card s6"><h3><i>⚡</i>Attention Points</h3><div class="s">Auto-detected from the selected data</div><div id="insights"></div></div>
+        <div class="card s6"><h3><i>★</i>Top 10 Projects by Budget</h3><div class="s">Largest single budgets in the selected filters</div><div id="tblTop"></div></div>
+      </section>
+      </div>
+      <div id="view-list" class="view">
+        <section class="grid">
+          <div class="card s12"><h3><i>▤</i>Project List</h3><div class="s" id="tblListSub">All projects in the selected filters — scroll inside the table · click a row for details</div><div class="tblscroll" id="tblList"></div></div>
+        </section>
+      </div>
+      <div id="view-unit" class="view">
+        <section class="grid">
+          <div class="card s12"><h3><i>▤</i>Unit Summary</h3><div class="s">Per-unit totals inside the selected filters</div><div id="tblUnit"></div></div>
+          <div class="card s6"><h3><i>▬</i>Budget vs Disbursed by Unit</h3><div class="s">How much of each unit's budget is already paid out</div><div id="chBarDisb"></div></div>
+          <div class="card s6"><h3><i>◔</i>Disbursed Share by Unit</h3><div class="s">Share of total payment disbursed</div><div id="chDonutDisb"></div></div>
+        </section>
+      </div>
+      <div class="nav">
+        <div id="nav-ov" class="act" onclick="switchView('ov')"><span>▦</span>OVERVIEW</div>
+        <div id="nav-list" onclick="switchView('list')"><span>▤</span>PROJECT LIST</div>
+        <div id="nav-unit" onclick="switchView('unit')"><span>⬢</span>UNIT SUMMARY</div>
+      </div>
+      <div class="foot">Design: same family as the Utility Dashboard (light theme) · Data: token-gated — login করলেই শুধু নিজের unit-এর data আসে (Apps Script v7)</div>
+    </main>
+  </div>
+</div>
+<div class="fsmodal" id="fsModal" style="display:none" onclick="if(event.target===this)closeStatusPopup()">
+  <div class="fsbox">
+  <div class="fshead">
+    <h2 id="fsTitle">Projects</h2>
+    <span class="tot" id="fsTotals"></span>
+    <span style="flex:1"></span>
+    <button class="entrybtn off" onclick="toggleFsSettings()">⚙️ Setup</button>
+    <button class="xbtn" onclick="closeStatusPopup()">✖ Close</button>
+  </div>
+  <div id="fsTabBar" style="background:var(--card);border-bottom:1px solid var(--border);padding:8px 18px">
+    <div class="efseg">
+    <button id="fsTabList" class="on" onclick="setFsTab('list')">📋 Project List</button>
+    <button id="fsTabAdd" onclick="setFsTab('add')">➕ New Project</button>
+    </div>
+  </div>
+  <div id="fsMsg" class="fsmsg"></div>
+  <div id="fsSettings" style="display:none;background:var(--card);border-bottom:1px solid var(--border);padding:12px 18px">
+    <div id="fsUrlRow"><label style="font-size:11px;color:var(--muted)">Script URL — already connected; only the owner can change it</label>
+    <input id="fsUrl" class="efinput" placeholder="https://script.google.com/macros/s/.../exec"></div>
+    <label style="font-size:11px;color:var(--muted)">Password — owner password = all units; unit password = own unit only</label>
+    <input type="password" id="fsToken" class="efinput" placeholder="Password set in Apps Script">
+    <label style="font-size:12px;color:var(--body)"><input type="checkbox" id="fsRemember" checked> Remember password on this device</label>
+    <div><button class="entrybtn" style="margin-top:8px" onclick="fsSaveSetup()">Save setup</button></div>
+  </div>
+  <div class="fsbody"><div style="overflow:auto" id="fsTable"></div>
+  <div id="fsAddForm" style="display:none;max-width:960px">
+    <div style="font-size:11px;color:var(--muted);margin:2px 0 12px">Add a new project — it will be added to the bottom of the Sheet (SL.NO is assigned automatically). To delete a project, use the Sheet.</div>
+    <div class="efgrid">
+      <div><label>Unit *</label><select id="faUnit" class="efinput"></select></div>
+      <div style="grid-column:span 2"><label>Project Name *</label><input id="faName" class="efinput" placeholder="e.g. Fire Door Replacement Work"></div>
+      <div><label>Status</label><select id="faStatus" class="efinput"><option>Completed</option><option selected>On-going</option><option>Hold</option><option>Up-coming</option><option>Reject</option></select></div>
+      <div><label>Tentative Budget (BDT)</label><input type="number" step="any" id="faBudget" class="efinput"></div>
+      <div><label>Payment Disbursed (BDT)</label><input type="number" step="any" id="faDisb" class="efinput"></div>
+      <div><label>Work Progress (%)</label><input type="number" step="any" id="faProg" class="efinput"></div>
+      <div><label>Start Date</label><input type="date" id="faStart" class="efinput"></div>
+      <div><label>Possible End Date</label><input type="date" id="faExpected" class="efinput"></div>
+      <div><label>Finish Date</label><input type="date" id="faRevised" class="efinput"></div>
+      <div><label>Budget Status</label><input id="faBstat" class="efinput" list="faBstatList"><datalist id="faBstatList"></datalist></div>
+      <div><label>Materials Status</label><input id="faMstat" class="efinput" list="faMstatList"><datalist id="faMstatList"></datalist></div>
+      <div style="grid-column:span 2"><label>Remarks</label><input id="faRemarks" class="efinput"></div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap"><button class="entrybtn" id="fsAddBtn" onclick="fsAddSave()">💾 Save New Project</button><button class="entrybtn off" onclick="toggleFsSettings()">⚙️ Setup (Password)</button></div>
+    <div style="font-size:11px;color:var(--faint);margin-top:8px">Setup: open ⚙️ Setup and enter your password — owner password = all units, unit password = own unit only. A unit password works for one unit only — the server enforces it.</div>
+  </div></div>
+</div>
+</div>
+<script>
+let D = {"rows": [], "units": [], "statuses": []};
+const PAL = ['#0E8A8A','#EC268F','#118DFF','#F59E0B','#8B5CF6','#00B7C3','#F97316','#64748B','#84CC16','#06B6D4'];
+let darkMode=false;
+try{ darkMode = localStorage.getItem('ud-theme')==='dark'; }catch(e){}
+function thc(){ return darkMode
+  ? {grid:'#22345A', mut:'#8499BC', track:'#1B2C4D', ctr:'#E8EEF9', hlab:'#C4D2E8', nodata:'#8499BC'}
+  : {grid:'#E6ECF3', mut:'#94A3B8', track:'#EDF2F7', ctr:'#16324F', hlab:'#33475C', nodata:'#94A3B8'}; }
+function applyTheme(){ document.documentElement.dataset.theme = darkMode?'dark':'light';
+  const b=document.getElementById('btnMode'); if(b) b.textContent = darkMode?'☀️ Light':'🌙 Dark'; }
+function toggleMode(){ darkMode=!darkMode;
+  try{ localStorage.setItem('ud-theme', darkMode?'dark':'light'); }catch(e){}
+  applyTheme(); render(); }
+let selU = new Set(D.units), selS = new Set(D.statuses);
+let selProg = 'all';
+function setProg(v){ selProg=v; render(); }
+let selOverdue = false;
+function setOverdue(v){ selOverdue=v; render(); }
+const fmtN = v => Math.round(v).toLocaleString('en-US');
+const fmtM = v => 'BDT ' + fmtN(v);
+const DMON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function fmtD(v){ v=(v||'').trim(); if(!v) return '—';
+  let m=v.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(m) return parseInt(m[3],10)+' '+DMON[parseInt(m[2],10)-1]+' '+m[1];
+  m=v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+  if(m){ let y=+m[3]; if(y<100) y+=2000; return parseInt(m[2],10)+' '+DMON[parseInt(m[1],10)-1]+' '+y; }
+  return v; }
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+/* ── Overdue (Project List only): the deadline is the Finish Date when it
+   exists, otherwise the Possible End Date. Overdue = active (not
+   Completed/Reject/Hold) + deadline passed. ── */
+function parseD(v){ v=(v||'').trim(); if(!v) return null;
+  let m=v.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(m) return new Date(+m[1], +m[2]-1, +m[3]);
+  m=v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+  if(m){ let y=+m[3]; if(y<100) y+=2000; return new Date(y, +m[1]-1, +m[2]); }
+  return null; }
+function todayMid(){ const n=new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+function toISODate(v){ const d=parseD(v); if(!d) return '';
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function odDeadline(r){ return parseD(r.revised) || parseD(r.expected); }
+function odFromRevised(r){ return !!parseD(r.revised); }
+function odDays(r){ const d=odDeadline(r); if(!d) return null;
+  return Math.floor((todayMid()-d)/86400000); }
+function odActive(r){ const k=(r.status||'').toLowerCase(); return k!=='completed' && k!=='reject' && k!=='hold'; }
+function isOverdue(r){ const d=odDays(r); return odActive(r) && d!==null && d>0; }
+function isDueSoon(r){ const d=odDays(r); return odActive(r) && d!==null && d<=0 && d>=-7; }
+function odBadge(r){ const d=odDays(r);
+  if(isOverdue(r)) return '<span class="badge od">⚠ '+d+'d overdue</span>';
+  if(isDueSoon(r)) return '<span class="badge soon">'+(d===0?'⏳ Due today':'⏳ Due in '+(-d)+'d')+'</span>';
+  return ''; }
+function buildFilters(){
+  document.getElementById('fUnits').innerHTML = D.units.map(u =>
+    `<label class="fitem"><input type="checkbox" ${selU.has(u)?'checked':''} onchange="togU('${u}',this.checked)"> ${u}</label>`).join('');
+  document.getElementById('fStatus').innerHTML = D.statuses.map(s =>
+    `<label class="fitem"><input type="checkbox" ${selS.has(s)?'checked':''} onchange="togS('${esc(s)}',this.checked)"> ${esc(s)}</label>`).join('');
+}
+function togU(u,on){ on?selU.add(u):selU.delete(u); render(); }
+function togS(s,on){ on?selS.add(s):selS.delete(s); render(); }
+function resetAll(){ D.units.forEach(u=>selU.add(u)); D.statuses.forEach(s=>selS.add(s));
+  selProg='all'; const fp=document.getElementById('fProg'); if(fp) fp.value='all';
+  selOverdue=false; const fo=document.getElementById('fOverdue'); if(fo) fo.checked=false;
+  const q=document.getElementById('qSearch'); if(q) q.value=''; buildFilters(); render(); }
+function toggleDD(which,ev){ ev.stopPropagation();
+  const p=document.getElementById('dd'+which+'Panel'), o=document.getElementById(which==='Unit'?'ddStatusPanel':'ddUnitPanel');
+  if(o) o.style.display='none';
+  p.style.display = p.style.display==='none' ? 'block' : 'none'; }
+function pickAll(kind,on){
+  if(kind==='U'){ selU.clear(); if(on) D.units.forEach(u=>selU.add(u)); }
+  else { selS.clear(); if(on) D.statuses.forEach(s=>selS.add(s)); }
+  buildFilters(); render(); }
+document.addEventListener('click', e=>{ if(!e.target.closest('.dd')){
+  ['ddUnitPanel','ddStatusPanel'].forEach(id=>{ const p=document.getElementById(id); if(p) p.style.display='none'; }); } });
+function ddLabel(sel, all, noun){
+  if(sel.size===all.length) return 'All '+noun+' ▾';
+  if(sel.size===0) return 'No '+noun+' selected ▾';
+  const arr=[...sel]; if(arr.length<=2) return arr.join(', ')+' ▾';
+  return sel.size+' '+noun+' selected ▾'; }
+function statusChip(s){
+  const k=(s||'').toLowerCase();
+  if(k==='completed') return '<span class="chip g">Completed</span>';
+  if(k==='on-going') return '<span class="chip b">On-going</span>';
+  if(k==='hold') return '<span class="chip r">Hold</span>';
+  if(k==='up-coming') return '<span class="chip y">Up-coming</span>';
+  return '<span class="chip n">'+esc(s||'—')+'</span>';
+}
+/* ── Subtasks: progress + remarks come from the SUBTASKS tab (Apps Script).
+   Key = the same SL + Unit + Project Name triple the edit bridge already
+   uses for row identity. Sheet progress is used only when no subtask exists. ── */
+let SUBS={}, SUBS_OK=false, SUBS_ERR=false, dtRn=null;
+function subKey(r){ return (r.sl||'')+'|'+(r.unit||'')+'|'+(r.name||''); }
+function subsOf(r){ return SUBS[subKey(r)]||[]; }
+function subProg(r){ const s=subsOf(r); if(!s.length) return null;
+  return Math.round(s.filter(x=>x.done).length/s.length*100); }
+function effProg(r){ const p=subProg(r); return p===null?r.prog:p; }
+function lastSub(r){ const s=subsOf(r); return s.length?s[s.length-1]:null; }
+function progCell(r){ const ep=effProg(r), sp=subProg(r);
+  return '<span class="pbar"><i style="width:'+Math.min(100,Math.max(0,ep))+'%"></i></span> '+ep+'%'+(sp!==null?' <span style="font-size:10px;color:var(--muted)">(subtask)</span>':''); }
+function lastSubHTML(r){ const ls=lastSub(r); if(!ls) return '';
+  return '<br><span class="lastsub">▸ শেষ সাবটাস্ক: '+esc(ls.subtask)+(ls.done?' ✓':'')+'</span>'; }
+async function loadSubtasks(){
+  try{
+    const res=await fetch(scriptUrl()+'?'+new URLSearchParams({action:'getsubtasks',token:curToken(),cb:Date.now()}));
+    const j=await res.json();
+    if(!j.ok) throw new Error(j.error||'bad response');
+    SUBS={}; (j.subs||[]).forEach(s=>{
+      const k=(s.sl||'')+'|'+(s.unit||'')+'|'+(s.name||'');
+      (SUBS[k]=SUBS[k]||[]).push({row:s.row, subtask:s.subtask, done:!!s.done, due:s.due||''});
+    });
+    SUBS_OK=true; SUBS_ERR=false;
+  }catch(e){ SUBS_OK=false; SUBS_ERR=true; }
+  render(); const fm=document.getElementById('fsModal');
+  if(fm && fm.style.display==='flex') renderFsTable();
+}
+function rowRn(r){ return r.rn || (D.rows.indexOf(r)+3); }
+function rowByRn(rn){ return D.rows.find(r=>rowRn(r)===rn); }
+function agg(){
+  const q=(document.getElementById('qSearch')||{}).value.trim().toLowerCase();
+  const rows = D.rows.filter(r => selU.has(r.unit) && selS.has(r.status)
+    && (selProg==='all' || (selProg==='100' ? effProg(r)>=100 : effProg(r)<100))
+    && (!selOverdue || isOverdue(r))
+    && (!q || r.name.toLowerCase().includes(q)));
+  let tb=0, td=0, tc=0, tp=0;
+  const byUnit={}, byStatus={}, byStatusN={}, byUnitDisb={};
+  rows.forEach(r=>{ tb+=r.budget; td+=r.disb; tp+=effProg(r);
+    if(r.status.toLowerCase()==='completed') tc++;
+    const u=byUnit[r.unit]=byUnit[r.unit]||{n:0,b:0,d:0,c:0,p:0}; u.n++; u.b+=r.budget; u.d+=r.disb; u.p+=effProg(r); if(r.status.toLowerCase()==='completed') u.c++;
+    byStatus[r.status]=(byStatus[r.status]||0)+r.budget;
+    byStatusN[r.status]=(byStatusN[r.status]||0)+1;
+    byUnitDisb[r.unit]=(byUnitDisb[r.unit]||0)+r.disb; });
+  return {rows, tb, td, rem: tb-td, n: rows.length, nc: tc,
+    avg: rows.length?tp/rows.length:0, byUnit, byStatus, byStatusN, byUnitDisb};
+}
+function donutSVG(data, total, money){
+  data=data.filter(d=>d[1]>0).sort((a,b)=>b[1]-a[1]);
+  if(!data.length||total<=0) return '<p style="color:'+thc().nodata+';font-size:12px">No data</p>';
+  const cx=88,cy=88,r=76,ir=46; let a0=-90, paths='';
+  data.forEach((d,i)=>{ const frac=d[1]/total, a1=a0+frac*360;
+    const pt=(a,rr)=>[cx+rr*Math.cos(a*Math.PI/180), cy+rr*Math.sin(a*Math.PI/180)];
+    const [x0,y0]=pt(a0,r),[x1,y1]=pt(a1,r),[x2,y2]=pt(a1,ir),[x3,y3]=pt(a0,ir), lg=frac>0.5?1:0;
+    if(frac>0.997) paths+=`<circle cx="${cx}" cy="${cy}" r="${(r+ir)/2}" fill="none" stroke="${PAL[i%PAL.length]}" stroke-width="${r-ir}"/>`;
+    else paths+=`<path d="M${x0},${y0} A${r},${r} 0 ${lg} 1 ${x1},${y1} L${x2},${y2} A${ir},${ir} 0 ${lg} 0 ${x3},${y3} Z" fill="${PAL[i%PAL.length]}"><title>${esc(d[0])}: ${fmtN(d[1])}</title></path>`;
+    a0=a1; });
+  const leg=data.map((d,i)=>`<div><i style="background:${PAL[i%PAL.length]}"></i>${esc(d[0])} · ${(d[1]/total*100).toFixed(1)}%</div>`).join('');
+  return `<svg viewBox="0 0 176 176" width="100%" style="max-width:180px;display:block;margin:0 auto">${paths}<text x="${cx}" y="${cy+5}" text-anchor="middle" font-size="13.5" font-weight="800" fill="${thc().ctr}">${money?fmtM(total):fmtN(total)}</text></svg><div class="leg">${leg}</div>`;
+}
+function hbarSVG(data){
+  data=data.filter(d=>d[1]>0).sort((a,b)=>b[1]-a[1]);
+  if(!data.length) return '<p style="color:'+thc().nodata+';font-size:12px">No data</p>';
+  const mx=Math.max(...data.map(d=>d[1]));
+  return data.map((d,i)=>`<div style="display:grid;grid-template-columns:110px 1fr 110px;align-items:center;gap:9px;margin:8px 0">
+    <div style="font-size:12px;color:${thc().hlab};white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${esc(d[0])}">${esc(d[0])}</div>
+    <div style="background:${thc().track};border-radius:5px;height:15px"><div style="width:${Math.max(2,d[1]/mx*100)}%;height:15px;border-radius:5px;background:${PAL[i%PAL.length]}"></div></div>
+    <div style="font-size:12px;text-align:right;color:${thc().ctr};font-weight:600;font-variant-numeric:tabular-nums">${fmtN(d[1])}</div></div>`).join('');
+}
+function pairedBars(byUnit){
+  const us=Object.entries(byUnit).sort((x,y)=>y[1].b-x[1].b);
+  if(!us.length) return '<p style="color:'+thc().nodata+';font-size:12px">No data</p>';
+  const mx=Math.max(...us.map(([,x])=>x.b));
+  return us.map(([u,x])=>`<div style="margin:10px 0">
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:${thc().hlab};margin-bottom:3px"><b style="color:${thc().ctr}">${u}</b><span>Budget ${fmtN(x.b)} · Disbursed ${fmtN(x.d)}</span></div>
+    <div style="background:${thc().track};border-radius:5px;height:11px;margin-bottom:3px"><div style="width:${Math.max(2,x.b/mx*100)}%;height:11px;border-radius:5px;background:#0E8A8A"></div></div>
+    <div style="background:${thc().track};border-radius:5px;height:11px"><div style="width:${Math.max(2,x.d/mx*100)}%;height:11px;border-radius:5px;background:#EC268F"></div></div></div>`).join('')
+    + `<div class="leg"><div><i style="background:#0E8A8A"></i>Budget</div><div><i style="background:#EC268F"></i>Disbursed</div></div>`;
+}
+function setHTML(id, html){ const e=document.getElementById(id); if(e) e.innerHTML=html; }
+function render(){
+  const a=agg();
+  const ub=document.getElementById('ddUnitBtn'); if(ub) ub.textContent=ddLabel(selU, D.units, 'units');
+  const sb=document.getElementById('ddStatusBtn'); if(sb) sb.textContent=ddLabel(selS, D.statuses, 'statuses');
+  const nodata='<p style="color:'+thc().nodata+';font-size:12px">No data in the selected filters</p>';
+  const stCount = s => a.rows.filter(r=>r.status.toLowerCase()===s).length;
+  const cards=[
+    {l:'Total Projects', v:fmtN(a.n), c:`<span class="chip n">all statuses</span>`, ic:'⬢', bg:'#DBEAFE', fg:'#1D4ED8', st:'all'},
+    {l:'Completed', v:fmtN(stCount('completed')), c:`<span class="chip g">${a.n?(stCount('completed')/a.n*100).toFixed(1)+'% of filtered':''}</span>`, ic:'✓', bg:'#DCF5E5', fg:'#15803D', st:'completed'},
+    {l:'Ongoing', v:fmtN(stCount('on-going')), c:`<span class="chip b">${a.n?(stCount('on-going')/a.n*100).toFixed(1)+'% of filtered':''}</span>`, ic:'🔨', bg:'#DBEAFE', fg:'#1D4ED8', st:'on-going'},
+    {l:'Hold', v:fmtN(stCount('hold')), c:`<span class="chip r">${a.n?(stCount('hold')/a.n*100).toFixed(1)+'% of filtered':''}</span>`, ic:'⏸️', bg:'#FDE3E3', fg:'#DC2626', st:'hold'},
+    {l:'Up-coming', v:fmtN(stCount('up-coming')), c:`<span class="chip y">${a.n?(stCount('up-coming')/a.n*100).toFixed(1)+'% of filtered':''}</span>`, ic:'🗓️', bg:'#FEF3C7', fg:'#B45309', st:'up-coming'},
+    {l:'Reject', v:fmtN(stCount('reject')), c: stCount('reject')?`<span class="chip r">${(stCount('reject')/a.n*100).toFixed(1)}% of filtered</span>`:`<span class="chip n">none yet</span>`, ic:'✖', bg:'#FDE3E3', fg:'#DC2626', st:'reject'},
+  ];
+  setHTML('kpis', cards.map(c=>
+    `<div class="kpi" onclick="openStatusPopup('${c.st}')"><div class="ic" style="background:${c.bg};color:${c.fg}">${c.ic}</div><div class="l">${c.l}</div><div class="v">${c.v}</div>${c.c}</div>`).join(''));
+  setHTML('chBarUnit', hbarSVG(Object.entries(a.byUnit).map(([u,x])=>[u,x.b])));
+  setHTML('chDonutStatus', donutSVG(Object.entries(a.byStatus), a.tb, true));
+  setHTML('chDonutCount', donutSVG(Object.entries(a.byStatusN), a.n, false));
+  const hold=a.rows.filter(r=>r.status.toLowerCase()==='hold');
+  const up=a.rows.filter(r=>r.status.toLowerCase()==='up-coming');
+  const on=a.rows.filter(r=>r.status.toLowerCase()==='on-going');
+  const top1=[...a.rows].sort((x,y)=>y.budget-x.budget)[0];
+  const ins=[];
+  if(hold.length) ins.push({i:'⏸️', h:`${hold.length} project(s) on Hold — ${fmtM(hold.reduce((s,r)=>s+r.budget,0))}`, p:`Held-up budget: <b>${hold.map(r=>`${esc(r.unit)} · ${esc(r.name.slice(0,42))}`).slice(0,4).join('<br>')}</b>${hold.length>4?`<br>…and ${hold.length-4} more (see Project List).`:''}`});
+  if(on.length) ins.push({i:'🔨', h:`${on.length} project(s) On-going`, p:`In-progress budget <b>${fmtM(on.reduce((s,r)=>s+r.budget,0))}</b> · disbursed so far <b>${fmtM(on.reduce((s,r)=>s+r.disb,0))}</b>.`});
+  if(up.length) ins.push({i:'🗓️', h:`${up.length} Up-coming project(s)`, p:`Planned budget <b>${fmtM(up.reduce((s,r)=>s+r.budget,0))}</b> — not started yet.`});
+  if(top1) ins.push({i:'★', h:`Largest project: ${esc(top1.name.slice(0,60))}`, p:`<b>${top1.unit}</b> · budget <b>${fmtM(top1.budget)}</b> · ${statusChip(top1.status)} · progress <b>${effProg(top1)}%</b>.`});
+  setHTML('insights', ins.length? ins.map(x=>`<div class="insight"><div class="ii">${x.i}</div><div><h4>${x.h}</h4><p>${x.p}</p></div></div>`).join('') : '<p style="color:'+thc().nodata+';font-size:12px">Nothing to flag in the selected data.</p>');
+  const top10=[...a.rows].sort((x,y)=>y.budget-x.budget).slice(0,10);
+  setHTML('tblTop', top10.length?
+    `<table><tr><th>Unit</th><th>Project</th><th>Status</th><th class="num">Budget (BDT)</th><th class="num">Progress</th><th class="num">Disbursed (BDT)</th></tr>`+
+    top10.map(r=>`<tr><td><b>${r.unit}</b></td><td>${esc(r.name)}</td><td>${statusChip(r.status)}</td><td class="num">${fmtN(r.budget)}</td><td class="num">${effProg(r)}%</td><td class="num">${fmtN(r.disb)}</td></tr>`).join('')+`</table>`:nodata);
+  const sub=document.getElementById('tblListSub'); if(sub) sub.textContent=`${a.n} project(s) in the selected filters — scroll inside the table · click a row for ClickUp-style details`;
+  setHTML('tblList', a.rows.length?
+    `<table><tr><th>SL</th><th>Unit</th><th>Project</th><th>Status</th><th class="num">Budget (BDT)</th><th>Start Date</th><th>Possible End Date</th><th>Finish Date</th><th>Progress</th><th class="num">Disbursed (BDT)</th><th>Remarks</th><th>Edit</th></tr>`+
+    a.rows.map(r=>`<tr class="${isOverdue(r)?'odrow ':''}rowclick" onclick="openDetail(${rowRn(r)})" title="Click for details"><td>${esc(r.sl)}</td><td><b>${r.unit}</b></td><td>${esc(r.name)}</td><td>${statusChip(r.status)}</td><td class="num">${fmtN(r.budget)}</td><td>${fmtD(r.start)}</td><td>${fmtD(r.expected)}${(!odFromRevised(r) && odBadge(r))?'<br>'+odBadge(r):''}</td><td>${fmtD(r.revised)}${(odFromRevised(r) && odBadge(r))?'<br>'+odBadge(r):''}</td><td>${progCell(r)}</td><td class="num">${fmtN(r.disb)}</td><td>${esc(r.remarks)}${lastSubHTML(r)}</td><td>${canEditUnit(r.unit)?'<button class="fsbtn" onclick="event.stopPropagation();openListEdit('+rowRn(r)+')">✏️ Edit</button>':''}</td></tr>`).join('')+`</table>`:nodata);
+  const uRows=Object.entries(a.byUnit).sort((x,y)=>y[1].b-x[1].b);
+  setHTML('tblUnit', uRows.length?
+    `<table><tr><th>Unit</th><th class="num">Projects</th><th class="num">Completed</th><th class="num">Budget (BDT)</th><th class="num">Disbursed (BDT)</th><th class="num">Remaining (BDT)</th><th class="num">Disb %</th><th class="num">Avg Progress</th></tr>`+
+    uRows.map(([u,x])=>`<tr><td><b>${u}</b></td><td class="num">${x.n}</td><td class="num">${x.c}</td><td class="num">${fmtN(x.b)}</td><td class="num">${fmtN(x.d)}</td><td class="num">${fmtN(x.b-x.d)}</td><td class="num">${x.b?(x.d/x.b*100).toFixed(1)+'%':'—'}</td><td class="num">${x.n?(x.p/x.n).toFixed(1)+'%':'—'}</td></tr>`).join('')+
+    `<tr class="tot"><td>TOTAL</td><td class="num">${a.n}</td><td class="num">${a.nc}</td><td class="num">${fmtN(a.tb)}</td><td class="num">${fmtN(a.td)}</td><td class="num">${fmtN(a.rem)}</td><td class="num">${a.tb?(a.td/a.tb*100).toFixed(1)+'%':'—'}</td><td class="num">${a.avg.toFixed(1)}%</td></tr></table>`:nodata);
+  setHTML('chBarDisb', pairedBars(a.byUnit));
+  setHTML('chDonutDisb', donutSVG(Object.entries(a.byUnitDisb), a.td, true));
+}
+let curView='ov';
+function switchView(v){ curView=v;
+  ['ov','list','unit'].forEach(k=>{
+    const el=document.getElementById('view-'+k); if(el) el.classList.toggle('on', k===v);
+    const nv=document.getElementById('nav-'+k); if(nv) nv.classList.toggle('act', k===v); });
+  window.scrollTo({top:0, behavior:'smooth'}); }
+const SHEET_ID = '1kIp3WI-HOKgpxQPyivIpyGxsJsHO8IhK2Y7mYoyqjdE';
+function parseCSV(t){
+  const rows=[]; let row=[], cur='', q=false;
+  for(let i=0;i<t.length;i++){ const ch=t[i];
+    if(q){ if(ch==='"'){ if(t[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=ch; }
+    else if(ch==='"') q=true;
+    else if(ch===','){ row.push(cur); cur=''; }
+    else if(ch==='\n'){ row.push(cur); rows.push(row); row=[]; cur=''; }
+    else if(ch!=='\r') cur+=ch; }
+  if(cur!==''||row.length){ row.push(cur); rows.push(row); }
+  return rows;
+}
+function pDateMDY(v){ v=(v||'').trim(); const m=v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/); if(!m) return v;
+  let y=+m[3]; if(y<100) y+=2000;
+  return y+'-'+String(+m[1]).padStart(2,'0')+'-'+String(+m[2]).padStart(2,'0'); }
+function pNum(v){ v=(v||'').toString().replace(/,/g,'').replace(/ /g,'').trim(); if(!v) return 0;
+  const n=parseFloat(v); return isNaN(n)?0:n; }
+function pPct(v){ v=(v||'').toString().replace('%','').trim(); const n=parseFloat(v); return isNaN(n)?0:n; }
+/* ── Login-gated data (v7): no public Sheet fetch any more — the Sheet's
+ *  public CSV export would leak every unit's rows. Data arrives only via
+ *  the token-checked getdata action, which returns the caller's unit only. */
+async function loadData(){
+  const token=curToken();
+  if(!token){ showGate('Token দাও — login ছাড়া data দেখা যাবে না।'); return false; }
+  try{
+    const res=await fetch(scriptUrl()+'?'+new URLSearchParams({action:'getdata',token,cb:Date.now()}));
+    const j=await res.json();
+    if(!j.ok) throw new Error(j.error||'unknown error');
+    if(!Array.isArray(j.rows)) throw new Error('bad data');
+    D={rows:j.rows,
+       units:[...new Set(j.rows.map(r=>r.unit).filter(Boolean))].sort(),
+       statuses:[...new Set(j.rows.map(r=>r.status).filter(Boolean))].sort()};
+    const au=allowedUnit();
+    if(au && au!=='ALL' && !D.units.includes(au)){ D.units=[au]; }
+    const keepU=new Set([...selU].filter(u=>D.units.includes(u)));
+    const keepS=new Set([...selS].filter(s=>D.statuses.includes(s)));
+    selU=keepU.size?keepU:new Set(D.units);
+    selS=keepS.size?keepS:new Set(D.statuses);
+    buildFilters(); render(); loadSubtasks();
+    return true;
+  }catch(e){
+    showGate('❌ Data আনা যায়নি: '+e.message+(String(e.message).includes('Unknown action')?' — Apps Script v7 deploy করো।':''));
+    return false;
+  }
+}
+async function refreshLive(manual){
+  const st=document.getElementById('liveStatus'), btn=document.getElementById('btnRefresh');
+  if(btn) btn.disabled=true;
+  if(st) st.textContent='⏳ Sheet থেকে data আনছি...';
+  const ok=await loadData();
+  if(st) st.innerHTML= ok ? '🟢 Live · updated '+new Date().toLocaleTimeString('en-GB') : '⚪ Login দরকার — token দিয়ে ঢুকো';
+  if(btn) btn.disabled=false;
+}
+/* ── Full-screen status popup + row edit (Apps Script bridge) ── */
+let fsStatus='all', fsEditRn=null, fsTab='list';
+function fsGet(k){ try{ return localStorage.getItem(k)||''; }catch(e){ return ''; } }
+function fsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+function fsSay(msg, cls){ const e=document.getElementById('fsMsg'); if(e){ e.textContent=msg; e.className='fsmsg '+(cls||''); } }
+function fsTitle(){ if(fsStatus==='all') return 'All Projects';
+  if(fsStatus==='on-going') return 'Ongoing Projects';
+  return fsStatus.charAt(0).toUpperCase()+fsStatus.slice(1)+' Projects'; }
+function fsPairs(){ const a=agg();
+  const list = fsStatus==='all' ? a.rows : a.rows.filter(r=>r.status.toLowerCase()===fsStatus);
+  return list.map(r=>({r, rn: rowRn(r)})); }
+function openStatusPopup(st){ fsStatus=st; fsEditRn=null; setFsTab('list'); renderFsTable();
+  document.getElementById('fsModal').style.display='flex';
+  document.body.style.overflow='hidden';
+  const tok=document.getElementById('fsToken'); if(tok && !tok.value) tok.value=curToken();
+  const url=document.getElementById('fsUrl'); if(url && !url.value) url.value=scriptUrl();
+  syncUrlRow(); }
+function closeStatusPopup(){ window.__autoLogin=false; document.getElementById('fsModal').style.display='none'; document.body.style.overflow=''; }
+function setFsTab(t){ fsTab=t;
+  document.getElementById('fsTabList').className=t==='list'?'on':'';
+  document.getElementById('fsTabAdd').className=t==='add'?'on':'';
+  document.getElementById('fsTable').style.display=t==='list'?'block':'none';
+  document.getElementById('fsAddForm').style.display=t==='add'?'block':'none';
+  const tb=document.getElementById('fsTabBar'); if(tb) tb.style.display=(t==='add')?'none':'';
+  if(t==='add'){ fsBuildAddLists();
+    document.getElementById('fsTitle').textContent='➕ Add New Project';
+    document.getElementById('fsTotals').textContent='New project will be added to the bottom of the Sheet.';
+  } else renderFsTable();
+}
+function openAddProject(){ openStatusPopup('all'); setFsTab('add'); }
+function fsBuildAddLists(){
+  const us=document.getElementById('faUnit');
+  if(us) us.innerHTML=D.units.map(u=>`<option>${u}</option>`).join('');
+  const au=allowedUnit();
+  // A token's unit may be newer than the file's snapshot (or live fetch may
+  // not have run yet): include it so the locked dropdown always has it.
+  if(us && au && au!=='ALL' && !D.units.includes(au)) us.innerHTML+=`<option>${au}</option>`;
+  if(us && au && au!=='ALL'){ us.value=au; us.disabled=true; }
+  else if(us) us.disabled=false;
+  const bs=[...new Set(D.rows.map(r=>r.bstat).filter(Boolean))].sort();
+  const ms=[...new Set(D.rows.map(r=>r.mstat).filter(Boolean))].sort();
+  const bl=document.getElementById('faBstatList'); if(bl) bl.innerHTML=bs.map(v=>`<option value="${esc(v)}">`).join('');
+  const ml=document.getElementById('faMstatList'); if(ml) ml.innerHTML=ms.map(v=>`<option value="${esc(v)}">`).join('');
+}
+async function fsAddSave(){
+  const url=scriptUrl();
+  const token=document.getElementById('fsToken').value||curToken();
+  const unit=document.getElementById('faUnit').value;
+  const name=document.getElementById('faName').value.trim();
+  if(!unit||!name){ fsSay('❌ Unit and Project Name are required.','err'); return; }
+  if(!url){ fsSay('❌ First open ⚙️ Setup and save the Apps Script URL.','err'); toggleFsSettings(); return; }
+  if(!token){ fsSay('❌ Enter the password in ⚙️ Setup first.','err'); toggleFsSettings(); return; }
+  if(document.getElementById('fsRemember').checked) fsSet('dev-entry-token',token);
+  const q=new URLSearchParams({token, action:'add', unit, name,
+    status:document.getElementById('faStatus').value,
+    budget:document.getElementById('faBudget').value,
+    disb:document.getElementById('faDisb').value,
+    prog:document.getElementById('faProg').value,
+    start:document.getElementById('faStart').value,
+    expected:document.getElementById('faExpected').value,
+    revised:document.getElementById('faRevised').value,
+    bstat:document.getElementById('faBstat').value.trim(),
+    mstat:document.getElementById('faMstat').value.trim(),
+    remarks:document.getElementById('faRemarks').value.trim()});
+  const btn=document.getElementById('fsAddBtn'); btn.disabled=true; fsSay('⏳ Saving...');
+  try{
+    const res=await fetch(url+'?'+q.toString()+'&cb='+Date.now());
+    const j=await res.json();
+    if(!j.ok) throw new Error(j.error||'unknown error');
+    fsSay('✅ New project saved (SL.NO '+j.sl+')! Refreshing...','ok');
+    ['faName','faBudget','faDisb','faProg','faStart','faExpected','faRevised','faBstat','faMstat','faRemarks'].forEach(id=>document.getElementById(id).value='');
+    await refreshLive(false);
+    fsStatus='all'; setFsTab('list');
+  }catch(e){ fsSay('❌ Save failed: '+e.message,'err'); }
+  btn.disabled=false;
+}
+document.addEventListener('keydown', e=>{ if(e.key!=='Escape') return;
+  const dm=document.getElementById('dtModal');
+  if(dm && dm.style.display==='flex') closeDetail();
+  else if(document.getElementById('fsModal').style.display==='flex') closeStatusPopup(); });
+function toggleFsSettings(){ const s=document.getElementById('fsSettings'); if(s) s.style.display=s.style.display==='none'?'block':'none'; }
+/* Per-unit lock (UI convenience only — the script enforces it on every save).
+   '' = unknown (show everything, server decides); 'ALL' = master; else one unit. */
+function allowedUnit(){ return window.__allowedUnit || fsGet('dev-allowed-unit') || ''; }
+function curToken(){ return window.__sessionToken || fsGet('dev-entry-token') || ''; }
+function syncUrlRow(){ const ur=document.getElementById('fsUrlRow'); if(ur) ur.style.display=(allowedUnit()==='ALL')?'block':'none'; }
+function canEditUnit(u){ const a=allowedUnit(); return !a || a==='ALL' || a.toUpperCase()===(u||'').toUpperCase(); }
+/* Central script URL (v4): embedded in the file so nobody has to paste it.
+   Effective URL = owner's manual override (only when a central update failed)
+   > central URL from getConfig > saved URL > embedded URL. */
+const EMBEDDED_SCRIPT_URL='https://script.google.com/macros/s/AKfycbxCmW5I92PX6VNGPQ32e0brcLnl8gI0HLRdpE09Uw5qq8DiUcNctqA3MepJE8IImoR7/exec';
+function scriptUrl(){ if(fsGet('dev-entry-url-manual')) return fsGet('dev-entry-url'); return window.__cfgUrl || fsGet('dev-entry-url') || EMBEDDED_SCRIPT_URL; }
+function fetchScriptConfig(){
+  const base=scriptUrl();
+  fetch(base+'?'+new URLSearchParams({action:'getconfig',cb:Date.now()}),{redirect:'follow'}).then(r=>r.json()).then(j=>{
+    if(j && j.ok && j.url && j.url!==base && !fsGet('dev-entry-url-manual')){ window.__cfgUrl=j.url; fsSet('dev-entry-url',j.url); }
+  }).catch(()=>{});
+}
+function fsSaveSetup(){ const uEl=document.getElementById('fsUrl'), tEl=document.getElementById('fsToken');
+  const u=(uEl||{}).value.trim();
+  if(!u){ fsSay('Enter the Apps Script Web app URL first.','err'); return; }
+  const tok=(tEl||{}).value.trim();
+  const rem=!!(document.getElementById('fsRemember')||{}).checked;
+  const oldEff=scriptUrl();
+  fsSet('dev-entry-url',u);
+  if(!tok){ fsSay('✅ URL saved. Enter your password above to unlock editing.','ok'); render(); renderFsTable(); return; }
+  fetch(u+'?'+new URLSearchParams({action:'whoami',token:tok,cb:Date.now()}),{redirect:'follow'}).then(r=>r.json()).then(j=>{
+    if(j && j.ok && j.unit){ window.__allowedUnit=j.unit; window.__sessionToken=tok; syncUrlRow();
+      if(rem){ fsSet('dev-entry-token',tok); fsSet('dev-allowed-unit',j.unit); }
+      if(j.unit==='ALL'){
+        if(uEl) uEl.disabled=false;
+        if(u!==oldEff){
+          return fetch(oldEff+'?'+new URLSearchParams({action:'seturl',token:tok,newurl:u,cb:Date.now()}),{redirect:'follow'}).then(r=>r.json()).then(sj=>{
+            if(sj && sj.ok){ window.__cfgUrl=u; fsSet('dev-entry-url-manual',''); fsSay('✅ Setup saved — new script URL updated for everyone.','ok'); if(window.__autoLogin) closeStatusPopup(); }
+            else { fsSet('dev-entry-url-manual','1'); fsSay('✅ Setup saved in this browser, but the central URL update failed ('+(sj&&sj.error||'check the old deployment')+') — others will still use the old URL until the file is updated.','err'); }
+            render(); renderFsTable();
+          }).catch(()=>{ fsSet('dev-entry-url-manual','1'); fsSay('✅ Setup saved in this browser, but the central URL update could not be reached — others will still use the old URL.','err'); render(); renderFsTable(); });
+        }
+        fsSay('✅ Setup saved — you can edit all units.','ok');
+        if(window.__autoLogin) closeStatusPopup();
+      } else {
+        if(uEl) uEl.disabled=true;
+        fsSay('✅ Setup saved — you can edit only '+j.unit+'.','ok');
+        if(window.__autoLogin) closeStatusPopup();
+      }
+    } else fsSay('❌ Wrong password for this script URL — please check it and save again.','err');
+    render(); renderFsTable();
+  }).catch(()=>{ fsSay('✅ Setup saved. (Login check failed — the server will still check every save.)','ok'); render(); renderFsTable(); }); }
+function renderFsTable(){
+  const pairs=fsPairs();
+  const tb=pairs.reduce((s,p)=>s+p.r.budget,0), td=pairs.reduce((s,p)=>s+p.r.disb,0);
+  document.getElementById('fsTitle').textContent=fsTitle();
+  document.getElementById('fsTotals').textContent=`${pairs.length} project(s) · Total budget ${fmtM(tb)} · Total disbursed ${fmtM(td)}`;
+  const stOpts=['Completed','On-going','Hold','Up-coming','Reject'];
+  const tbl = pairs.length?
+    `<table><tr><th>SL</th><th>Unit</th><th>Project</th><th>Status</th><th class="num">Budget (BDT)</th><th>Start Date</th><th>Possible End Date</th><th>Finish Date</th><th>Progress</th><th class="num">Disbursed (BDT)</th><th>Remarks</th><th></th></tr>`+
+    pairs.map(({r, rn})=>{
+      if(rn===fsEditRn){
+        return `<tr id="fsEditRow"><td>${esc(r.sl)}</td><td><b>${r.unit}</b></td><td>${esc(r.name)}</td>`+
+        `<td><select id="fsSt" class="efinput" style="min-width:120px">${stOpts.map(s=>`<option ${s.toLowerCase()===r.status.toLowerCase()?'selected':''}>${s}</option>`).join('')}</select></td>`+
+        `<td><input type="number" step="any" id="fsBu" class="efinput" value="${r.budget}" style="min-width:120px"></td>`+
+        `<td><input type="date" id="feStart" class="efinput" value="${toISODate(r.start)}"></td><td><input type="date" id="feExpected" class="efinput" value="${toISODate(r.expected)}"></td><td><input type="date" id="feRevised" class="efinput" value="${toISODate(r.revised)}"></td>`+
+        `<td><input type="number" step="any" id="fsPr" class="efinput" value="${r.prog}" style="width:80px" ${subProg(r)!==null?'disabled title="Subtask থেকে হিসাব হচ্ছে — Sheet-এর Progress এখানে দেখানো হয় না"':''}> %</td>`+
+        `<td><input type="number" step="any" id="fsDi" class="efinput" value="${r.disb}" style="min-width:120px"></td>`+
+        `<td><input id="fsRe" class="efinput" value="${esc(r.remarks)}" style="min-width:160px"></td>`+
+        `<td style="white-space:nowrap"><button class="fsbtn pri" onclick="fsSaveEdit(${rn})">Save</button> <button class="fsbtn" onclick="fsCancelEdit()">Cancel</button></td></tr>`;
+      }
+      return `<tr class="rowclick" onclick="closeStatusPopup();openDetail(${rn})" title="Click for details"><td>${esc(r.sl)}</td><td><b>${r.unit}</b></td><td>${esc(r.name)}</td><td>${statusChip(r.status)}</td><td class="num">${fmtN(r.budget)}</td><td>${fmtD(r.start)}</td><td>${fmtD(r.expected)}</td><td>${fmtD(r.revised)}</td><td>${progCell(r)}</td><td class="num">${fmtN(r.disb)}</td><td>${esc(r.remarks)}${lastSubHTML(r)}</td><td>${canEditUnit(r.unit)?'<button class="fsbtn" onclick="event.stopPropagation();fsEdit('+rn+')">Edit</button>':''}</td></tr>`;
+    }).join('')+`</table>`
+    : '<p style="color:'+thc().nodata+';font-size:13px">No projects in this status yet. If a project gets this status in the Sheet, it will appear here automatically.</p>';
+  setHTML('fsTable', tbl);
+}
+function fsEdit(rn){ fsEditRn=rn; renderFsTable(); }
+function openListEdit(rn){ openStatusPopup('all'); fsEditRn=rn; renderFsTable();
+  const er=document.getElementById('fsEditRow'); if(er) er.scrollIntoView({block:'center'}); }
+function fsCancelEdit(){ fsEditRn=null; renderFsTable(); }
+async function fsSaveEdit(rn){
+  const row=rowByRn(rn);
+  if(!row){ fsSay('❌ Row not found — please refresh the dashboard.','err'); return; }
+  const url=scriptUrl();
+  const token=document.getElementById('fsToken').value||curToken();
+  if(!url){ fsSay('❌ First open ⚙️ Setup and save the Apps Script URL.','err'); toggleFsSettings(); return; }
+  if(!token){ fsSay('❌ Enter the password in ⚙️ Setup first.','err'); toggleFsSettings(); return; }
+  if(document.getElementById('fsRemember').checked) fsSet('dev-entry-token',token);
+  const q=new URLSearchParams({token, action:'update', rn:String(rn), sl:row.sl, unit:row.unit, name:row.name,
+    status:document.getElementById('fsSt').value, budget:document.getElementById('fsBu').value,
+    disb:document.getElementById('fsDi').value, prog:document.getElementById('fsPr').value,
+    remarks:document.getElementById('fsRe').value,
+    start:document.getElementById('feStart').value,
+    expected:document.getElementById('feExpected').value,
+    revised:document.getElementById('feRevised').value});
+  fsSay('⏳ Saving...');
+  try{
+    const res=await fetch(url+'?'+q.toString()+'&cb='+Date.now());
+    const j=await res.json();
+    if(!j.ok) throw new Error(j.error||'unknown error');
+    fsSay('✅ Saved! Refreshing...','ok');
+    fsEditRn=null;
+    await refreshLive(false);
+    renderFsTable();
+  }catch(e){ fsSay('❌ Save failed: '+e.message,'err'); }
+}
+/* ── ClickUp-style single-project detail modal ── */
+function dtSay(msg){ const e=document.getElementById('dtMsg'); if(e) e.textContent=msg; }
+function openDetail(rn){
+  dtRn=rn;
+  const r=rowByRn(rn); if(!r) return;
+  if(!document.getElementById('dtModal')){
+    const w=document.createElement('div');
+    w.innerHTML='<div class="dtmodal" id="dtModal" style="display:none" onclick="if(event.target===this)closeDetail()"><div class="dtcard"><div id="dtBody"></div></div></div>';
+    document.body.appendChild(w);
+  }
+  renderDetail();
+  document.getElementById('dtModal').style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function closeDetail(){ const m=document.getElementById('dtModal'); if(m) m.style.display='none'; document.body.style.overflow=''; dtRn=null; }
+function renderDetail(){
+  const rn=dtRn, r=rowByRn(rn); if(!r) return closeDetail();
+  const subs=subsOf(r), sp=subProg(r), ep=effProg(r), ls=lastSub(r), od=odBadge(r);
+  const done=subs.filter(s=>s.done).length;
+  const fields=[['Status',statusChip(r.status)],['Unit','<b>'+esc(r.unit)+'</b>'],['Tentative Budget',fmtM(r.budget)],['Budget Status',esc(r.bstat)||'—'],['Materials Status',esc(r.mstat)||'—'],['Start Date',fmtD(r.start)],['Possible End Date',fmtD(r.expected)],['Finish Date',fmtD(r.revised)],['Disbursed',fmtM(r.disb)]];
+  let subHTML='';
+  if(!SUBS_OK){
+    subHTML='<p style="font-size:12.5px;color:var(--muted)">Subtask লোড করা যায়নি — নতুন Apps Script (v7) deploy করার পর এখানে সাবটাস্ক দেখা যাবে।</p>';
+  } else if(!subs.length){
+    subHTML='<p style="font-size:12.5px;color:var(--muted)">এখনো কোনো সাবটাস্ক নেই — নিচে প্রথম সাবটাস্ক যোগ করো।</p>';
+  } else {
+    subHTML=subs.map(s=>`<div class="subrow${s.done?' done':''}"><input type="checkbox" ${s.done?'checked':''} onclick="dtToggleSub(${s.row})"><span class="subname">${esc(s.subtask)}</span><span class="subdue">${s.due?esc(s.due):''}</span>${canEditUnit(r.unit)?`<button class="subx" onclick="dtDelSub(${s.row})" title="Delete subtask">✖</button>`:''}</div>`).join('');
+  }
+  const canE=canEditUnit(r.unit);
+  document.getElementById('dtBody').innerHTML=
+  `<div class="dthead"><div style="flex:1;min-width:220px"><h2>${esc(r.name)}</h2><div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap">${statusChip(r.status)}<span class="chip n">${esc(r.unit)}</span><span class="chip n">SL ${esc(r.sl)}</span>${od||''}</div></div>${canE?`<button class="fsbtn pri" onclick="closeDetail();openListEdit(${rn})">✏️ Edit</button>`:''}<button class="xbtn" onclick="closeDetail()">✖</button></div>`+
+  `<div class="dtsec"><h4>Fields</h4><div class="dtgrid">${fields.map(f=>`<div><b>${f[0]}</b>${f[1]}</div>`).join('')}</div></div>`+
+  `<div class="dtsec"><h4>Progress</h4><div style="font-size:13px"><span class="pbar" style="width:160px"><i style="width:${Math.min(100,Math.max(0,ep))}%"></i></span> <b>${ep}%</b>${sp!==null?` · Subtask থেকে হিসাব (${done}/${subs.length} শেষ)`:` · Sheet-এর Progress`}</div></div>`+
+  `<div class="dtsec"><h4>Remarks</h4><div style="font-size:13px">${esc(r.remarks)||'—'}${ls?`<br><span class="lastsub">📌 শেষ সাবটাস্ক: ${esc(ls.subtask)}${ls.done?' ✓ সম্পন্ন':' ○ বাকি'}${ls.due?' · Due '+esc(ls.due):''}</span>`:''}</div></div>`+
+  `<div class="dtsec"><h4>Subtasks (${done}/${subs.length})</h4>${subHTML}`+
+  (canE?`<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><input id="dtSubName" class="efinput" placeholder="নতুন সাবটাস্কের নাম…" style="flex:2;min-width:180px"><input id="dtSubDue" type="date" class="efinput" style="flex:1;min-width:130px"><button class="fsbtn pri" onclick="dtAddSub()">➕ Add</button></div><div style="display:flex;gap:8px;margin-top:8px;align-items:center"><input id="dtToken" type="password" class="efinput" placeholder="পাসওয়ার্ড (token)" style="flex:1;min-width:160px"><span style="font-size:11px;color:var(--muted)">Setup-এ save করা থাকলে এখানে বসে যাবে</span></div><div id="dtMsg" style="font-size:12.5px;min-height:18px;margin-top:6px"></div>`:`<p style="font-size:12px;color:var(--muted)">এই unit-এর সাবটাস্ক বদলাতে তোমার token-এর অনুমতি নেই।</p>`)+`</div>`;
+  const tk=document.getElementById('dtToken'); if(tk && !tk.value) tk.value=curToken();
+}
+async function dtCall(action, extra){
+  const r=rowByRn(dtRn);
+  const token=(document.getElementById('dtToken')||{}).value||curToken();
+  if(!token){ dtSay('❌ আগে পাসওয়ার্ড দাও — Setup-এ save করা থাকলে আবার চেষ্টা করো।'); return null; }
+  const q=new URLSearchParams(Object.assign({token, action, rn:String(dtRn), sl:r.sl, unit:r.unit, name:r.name}, extra||{}));
+  try{
+    const res=await fetch(scriptUrl()+'?'+q.toString()+'&cb='+Date.now());
+    const j=await res.json();
+    if(!j.ok) throw new Error(j.error||'unknown error');
+    fsSet('dev-entry-token', token);
+    return j;
+  }catch(e){ dtSay('❌ '+e.message); return null; }
+}
+async function dtToggleSub(srow){ dtSay('⏳ Saving...');
+  const j=await dtCall('togglesubtask', {subrow:String(srow)});
+  if(j){ await loadSubtasks(); renderDetail(); } }
+async function dtDelSub(srow){ if(!confirm('এই সাবটাস্ক মুছে ফেলবে?')) return; dtSay('⏳ Deleting...');
+  const j=await dtCall('deletesubtask', {subrow:String(srow)});
+  if(j){ await loadSubtasks(); renderDetail(); } }
+async function dtAddSub(){
+  const name=(document.getElementById('dtSubName')||{}).value.trim();
+  const due=(document.getElementById('dtSubDue')||{}).value;
+  if(!name){ dtSay('❌ সাবটাস্কের নাম লিখো।'); return; }
+  dtSay('⏳ Saving...');
+  const j=await dtCall('addsubtask', {subtask:name, due:due});
+  if(j){ document.getElementById('dtSubName').value=''; document.getElementById('dtSubDue').value='';
+    dtSay('✅ সাবটাস্ক যোগ হয়েছে।'); await loadSubtasks(); renderDetail(); } }
+buildFilters(); applyTheme(); render(); fetchScriptConfig();
+/* ── Hard login gate (v7): no token → no data. The gate cannot be closed
+ *  to browse — the old view-only mode is gone by design. */
+function showGate(msg){
+  if(!document.getElementById('gateModal')){
+    const w=document.createElement('div');
+    w.innerHTML='<div class="dtmodal" id="gateModal" style="display:flex;z-index:300"><div class="dtcard" style="max-width:420px;margin-top:12vh"><div class="dtsec"><h2 style="font-size:17px;margin-bottom:4px">Development &amp; Compliance Works</h2><p style="font-size:12.5px;color:var(--muted)">শুধু token দিয়ে ঢোকা যাবে — তোমার unit-এর কাজই শুধু দেখা যাবে।</p></div><div class="dtsec"><label style="font-size:11px;color:var(--muted)">Token (password)</label><input type="password" id="gateToken" class="efinput" placeholder="তোমার unit-এর token"><label style="font-size:12px;color:var(--body)"><input type="checkbox" id="gateRemember" checked> এই device-এ মনে রাখো</label><div style="margin-top:10px"><button class="entrybtn" onclick="gateLogin()">🔑 Login</button></div><div id="gateMsg" style="font-size:12.5px;min-height:18px;margin-top:8px"></div><p style="font-size:11.5px;color:var(--muted)">Token না থাকলে owner-এর সাথে যোগাযোগ করো।</p></div></div></div>';
+    document.body.appendChild(w);
+    document.getElementById('gateToken').addEventListener('keydown', e=>{ if(e.key==='Enter') gateLogin(); });
+  }
+  const m=document.getElementById('gateModal'); m.style.display='flex'; document.body.style.overflow='hidden';
+  if(msg){ const gm=document.getElementById('gateMsg'); if(gm) gm.textContent=msg; }
+  const gt=document.getElementById('gateToken'); if(gt && !gt.value) gt.value=curToken();
+}
+function hideGate(){ const m=document.getElementById('gateModal'); if(m) m.style.display='none'; document.body.style.overflow=''; }
+async function gateLogin(){
+  const tok=(document.getElementById('gateToken')||{}).value.trim();
+  const rem=!!(document.getElementById('gateRemember')||{}).checked;
+  const gm=document.getElementById('gateMsg');
+  if(!tok){ if(gm) gm.textContent='❌ Token দাও।'; return; }
+  if(gm) gm.textContent='⏳ Checking...';
+  try{
+    const res=await fetch(scriptUrl()+'?'+new URLSearchParams({action:'whoami',token:tok,cb:Date.now()}));
+    const j=await res.json();
+    if(!j.ok || !j.unit) throw new Error(j.error||'Wrong token');
+    window.__sessionToken=tok; window.__allowedUnit=j.unit;
+    if(rem){ fsSet('dev-entry-token',tok); fsSet('dev-allowed-unit',j.unit); }
+    const tokEl=document.getElementById('fsToken'); if(tokEl) tokEl.value=tok;
+    syncUrlRow(); hideGate();
+    if(await loadData()) switchView('ov');
+  }catch(e){ if(gm) gm.textContent='❌ '+e.message; }
+}
+(async function boot(){
+  const saved=curToken();
+  if(saved){
+    try{
+      const res=await fetch(scriptUrl()+'?'+new URLSearchParams({action:'whoami',token:saved,cb:Date.now()}));
+      const j=await res.json();
+      if(j.ok && j.unit){ window.__sessionToken=saved; window.__allowedUnit=j.unit; syncUrlRow(); if(await loadData()) switchView('ov'); return; }
+    }catch(e){}
+    showGate('Save করা token কাজ করছে না — আবার token দাও।');
+  } else showGate();
+})();
+</script>
+</body></html>
